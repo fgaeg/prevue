@@ -2,7 +2,7 @@
   <div class="container bg-yellow-300">
     <div>
       <h1 class="text-bold">
-        prevue
+        {{ title }}
       </h1>
       <p>
         Vue with Nuxt.js
@@ -15,13 +15,15 @@
 // import Logo from '~/components/Logo.vue'
 
 export default {
-  // components: {
-  //   Logo
-  // }
+  asyncData() {
+    return {
+      title: 'Prevue'
+    }
+  }
 }
 </script>
 
-<style>
+<style scoped>
 /* Sample `apply` at-rules with Tailwind CSS */
 .container {
   @apply text-red-500;

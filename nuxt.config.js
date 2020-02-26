@@ -4,7 +4,10 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: process.env.npm_package_name || '',
+    htmlAttrs: {
+      lang: 'en',
+    },
+    titleTemplate: '%s | PreVue',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -12,6 +15,18 @@ export default {
         hid: 'description',
         name: 'description',
         content: process.env.npm_package_description || ''
+      },
+      { property: 'og:type', content: 'website' },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content: 'Prevue is a simple example of a pre-rendered Vue website'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content:
+          'https://blue.kumparan.com/image/upload/senpz1uqdsvamsf2n1wb.png'
       }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
@@ -19,7 +34,7 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#ff0000', throttle: 0 },
+  loading: { color: '#fff', throttle: 0 },
   /*
    ** Global CSS
    */
@@ -27,7 +42,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/head'],
   /*
    ** Nuxt.js dev-modules
    */

@@ -1,8 +1,28 @@
 <template>
-  <div>
+  <div class="container mx-auto">
+    <nuxt-link to="/">Home</nuxt-link>
+    <nuxt-link to="/about">About</nuxt-link>
+    <nuxt-link to="/sample">Sample</nuxt-link>
     <nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  head() {
+    const canonicalUrl = process.env.BASE_URL + this.$route.path
+    return {
+      link: [
+        {
+          rel: 'canonical',
+          href: canonicalUrl
+        }
+      ],
+      meta: [{ property: 'og:url', content: canonicalUrl }]
+    }
+  }
+}
+</script>
 
 <style>
 html {
