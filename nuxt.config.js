@@ -134,7 +134,27 @@ export default {
    */
   build: {
     /* You can extend webpack config here */
+    // extract css, rather than inline
     // extractCSS: true,
+    // webpack analize
+    // analyze: true,
+    // extracting everything into a single file
+    // optimization: {
+    //   splitChunks: {
+    //     cacheGroups: {
+    //       styles: {
+    //         name: 'styles',
+    //         test: /\.(css|vue)$/,
+    //         chunks: 'all',
+    //         enforce: true
+    //       }
+    //     }
+    //   }
+    // },
+    // changes fancy chunk names to name and hash
+    // filenames: {
+    //   chunk: ({ isDev }) => isDev ? '[name].js' : '[id].[contenthash].js'
+    // },
     extend(config, ctx) {
       /* Run ESLint on save */
       // if (ctx.isDev && ctx.isClient) {
