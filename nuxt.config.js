@@ -1,16 +1,43 @@
 export default {
   mode: 'universal',
   /*
-   ** Headers of the page
-   */
+  Headers of the page
+    - Nuxt.js uses vue-meta to update the headers and html attributes of your application.
+    - Nuxt.js configures vue-meta with these options:
+      {
+        // the component option name that vue-meta looks for meta info on.
+        keyName: 'head',
+        // the attribute name vue-meta adds to the tags it observes
+        attribute: 'data-n-head',
+        // the attribute name that lets vue-meta know that meta info has already been server-rendered
+        ssrAttribute: 'data-n-head-ssr',
+        // the property name that vue-meta uses to determine whether to overwrite or append a tag
+        tagIDKeyName: 'hid'
+      }
+  */
   head: {
+    // Each key:value maps to the equivalent attribute:value of the <html> element.
+    // Example output: <html foo="bar" amp></html>
     htmlAttrs: {
       lang: 'en',
+      // foo: 'bar',
+      // amp: true
     },
     titleTemplate: '%s | PreVue',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // Since v1.5.0 of vue-meta, you can now set up meta templates that work similar to the titleTemplate:
+      // Example output:
+      // <meta charset="utf-8">
+      // <meta name="og:title" property="og:title" content="Test title - My page">
+      // {
+      //   'vmid': 'og:title',
+      //   'property': 'og:title',
+      //   'content': 'Test title',
+      //   'template': chunk => `${chunk} - My page`
+      //   //or as string template: '%s - My page'
+      // },
       {
         hid: 'description',
         name: 'description',
@@ -29,6 +56,39 @@ export default {
           'https://blue.kumparan.com/image/upload/senpz1uqdsvamsf2n1wb.png'
       }
     ],
+    // Each key:value maps to the equivalent attribute:value of the <body> element.
+    // Example output: <body bar="baz">Foo Bar</body>
+    // bodyAttrs: {
+    //   bar: 'baz'
+    // },
+    //
+    // Each item in the array maps to a newly-created <script> element,
+    // where object properties map to attributes.
+    // Example output: <script type="application/ld+json">{ "@context": "http://schema.org" }</script>
+    // script: [
+    //   { innerHTML: '{ "@context": "http://schema.org" }', type: 'application/ld+json' }
+    // ],
+    //
+    // Maps to a newly-created <base> element, where object properties map to attributes.
+    // Example output: <base target="_blank" href="/">
+    // base: {
+    //   target: '_blank',
+    //   href: '/'
+    // },
+    //
+    // Each item in the array maps to a newly-created <noscript> element,
+    // where object properties map to attributes.
+    // noscript: [
+    //   { innerHTML: 'This website requires JavaScript.' }
+    // ],
+    //
+    // Will be called when the client metaInfo updates/changes. Receives the following parameters:
+    // newInfo | (Object) | The new state of the metaInfo object.
+    // addedTags | ([HTMLElement]) | a list of elements that were added.
+    // removedTags | ([HTMLElement]) | a list of elements that were removed.
+    // changed (newInfo, addedTags, removedTags) {
+    //   console.log('Meta info was updated!')
+    // },
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
   /*
@@ -73,9 +133,18 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    /* You can extend webpack config here */
+    // extractCSS: true,
+    extend(config, ctx) {
+      /* Run ESLint on save */
+      // if (ctx.isDev && ctx.isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
+      // }
+    }
   }
 }
