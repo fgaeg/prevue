@@ -15,7 +15,7 @@
 // import Logo from '~/components/Logo.vue'
 
 export default {
-  asyncData() {
+  data() {
     return {
       title: 'Prevue'
     }

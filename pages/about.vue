@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  asyncData() {
+  data() {
     return {
       title: 'About page',
       content: 'About sample pre-rendered Vue webpage',
@@ -28,6 +28,11 @@ export default {
           hid: 'description',
           name: 'description',
           content: this.content
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: this.title
         },
         {
           hid: 'og:description',
