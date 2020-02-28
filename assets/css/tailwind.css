@@ -1,5 +1,7 @@
 /* purgecss start ignore */
 @tailwind base;
+/* purgecss end ignore */
+
 h1 {
   @apply text-6xl;
 }
@@ -19,7 +21,6 @@ a {
 .container {
   @apply mx-auto;
 }
-/* purgecss end ignore */
 
 @tailwind components;
 @tailwind utilities;

@@ -121,24 +121,31 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    // Doc: https://github.com/Developmint/nuxt-purgecss
+    'nuxt-purgecss',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  purgeCSS: {
+    // your settings here
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
   /*
+   ** Generate configuration
+   */
+  generate: {},
+  /*
    ** Build configuration
    */
   build: {
     /* You can extend webpack config here */
     // extract css, rather than inline
-    // extractCSS: true,
-    // webpack analize
-    // analyze: true,
-    // extracting everything into a single file
+    extractCSS: true,
+    // extracting every css into a single file
     // optimization: {
     //   splitChunks: {
     //     cacheGroups: {
@@ -152,9 +159,11 @@ export default {
     //   }
     // },
     // changes fancy chunk names to name and hash
-    // filenames: {
-    //   chunk: ({ isDev }) => isDev ? '[name].js' : '[id].[contenthash].js'
-    // },
+    filenames: {
+      css: ({ isDev }) => isDev ? '[name].css' : '[name].[contenthash].css',
+      img: ({ isDev }) => isDev ? '[path][name].[ext]' : 'img/[name].[contenthash:7].[ext]',
+      chunk: ({ isDev }) => isDev ? '[name].js' : '[name].[contenthash].js'
+    },
     extend(config, ctx) {
       /* Run ESLint on save */
       // if (ctx.isDev && ctx.isClient) {
