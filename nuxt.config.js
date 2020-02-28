@@ -121,13 +121,19 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    // Doc: https://github.com/Developmint/nuxt-purgecss
-    'nuxt-purgecss',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  tailwindcss: {
+    // configPath: '~/config/tailwind.config.js',
+    // cssPath: '~/assets/css/tailwind.css',
+    purgeCSSInDev: true
+  },
   purgeCSS: {
-    // your settings here
+    whitelist: ["html", "body"],
+    // targetting class containing "nuxt", only for 1 level
+    // whitelistPatterns: [/\b(\w*nuxt\w*)\b/],
+    whitelistPatternsChildren: [/\b(\w*nuxt\w*)\b/, /^v-/, /^token/, /^pre/, /^code/]
   },
   /*
    ** Axios module configuration
@@ -166,14 +172,14 @@ export default {
     },
     extend(config, ctx) {
       /* Run ESLint on save */
-      // if (ctx.isDev && ctx.isClient) {
-      //   config.module.rules.push({
-      //     enforce: 'pre',
-      //     test: /\.(js|vue)$/,
-      //     loader: 'eslint-loader',
-      //     exclude: /(node_modules)/
-      //   })
-      // }
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: 'pre',
+          test: /\.(js|vue)$/,
+          loader: 'eslint-loader',
+          exclude: /(node_modules)/
+        })
+      }
     }
   }
 }
