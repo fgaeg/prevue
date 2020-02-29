@@ -29,14 +29,11 @@ export default {
         title: 'Sample page',
         buildTime: new Date().toString()
       }
-    } else {
-      return {
-        title: 'Sample page'
-      }
     }
   },
   data() {
     return {
+      title: 'Sample page',
       loadTime: new Date().toString()
     }
   }

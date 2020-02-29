@@ -1,3 +1,6 @@
+// Load dotenv module so .env variables are available
+require('dotenv').config();
+
 export default {
   mode: 'universal',
   /*
@@ -61,13 +64,37 @@ export default {
     // bodyAttrs: {
     //   bar: 'baz'
     // },
+    // unescaping/disable sanitizer for inline script
+    __dangerouslyDisableSanitizers: ['script'],
     //
     // Each item in the array maps to a newly-created <script> element,
     // where object properties map to attributes.
     // Example output: <script type="application/ld+json">{ "@context": "http://schema.org" }</script>
-    // script: [
-    //   { innerHTML: '{ "@context": "http://schema.org" }', type: 'application/ld+json' }
-    // ],
+    script: [
+      {
+        type: 'application/ld+json',
+        json: {
+          '@context': 'http://schema.org',
+          '@type': 'Organization',
+          name: 'Prevue',
+          unsafe: '<p>Hello World</p>'
+        }
+      },
+      {
+        innerHTML: 'console.log("I am in body");',
+        body: true
+      },
+      // sample inline google analytics, instead of plugin
+      // but this approach doesn't flexible
+      // {
+      //   innerHTML: 'window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date; ga("create", "'+ process.env.ID_GOOGLE_ANALYTICS +'", "auto"); ga("send", "pageview");'
+      // },
+      {
+        src: 'https://www.google-analytics.com/analytics.js',
+        async: true,
+        defer: true
+      }
+    ],
     //
     // Maps to a newly-created <base> element, where object properties map to attributes.
     // Example output: <base target="_blank" href="/">
@@ -78,9 +105,16 @@ export default {
     //
     // Each item in the array maps to a newly-created <noscript> element,
     // where object properties map to attributes.
-    // noscript: [
-    //   { innerHTML: 'This website requires JavaScript.' }
-    // ],
+    noscript: [
+      { innerHTML: 'This website requires JavaScript.' }
+    ],
+    //
+    // A callback function which is called when vue-meta has updated the metadata after navigation occurred. This can be used to anything (such as track page views) with the updated document
+    // afterNavigation(metaInfo) {
+    //   trackPageView(document.title)
+    //   // is the same as
+    //   trackPageView(metaInfo.title)
+    // },
     //
     // Will be called when the client metaInfo updates/changes. Receives the following parameters:
     // newInfo | (Object) | The new state of the metaInfo object.
@@ -102,11 +136,18 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['~/plugins/head'],
+  plugins: [
+    { src: '~/plugins/head' }, // process for both
+    { src: '~/plugins/ga.js', mode: 'client' } // client only processing
+    // or like this within file naming
+    // { src: '~/plugins/ga.client.js' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
@@ -124,20 +165,20 @@ export default {
     // Doc: https://github.com/nuxt-community/robots-module
     '@nuxtjs/robots',
     // Doc: https://github.com/nuxt-community/sitemap-module
-    '@nuxtjs/sitemap',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/sitemap'
   ],
   sitemap: {
     // custom configuration
     hostname: process.env.BASE_URL,
     gzip: true,
     exclude: [
+      '/404',
       '/sample'
     ],
   },
   robots: {
     /* module options */
+    sitemap: process.env.BASE_URL + '/sitemap.xml',
     UserAgent: '*',
     Disallow: '/'
   },

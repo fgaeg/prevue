@@ -13,11 +13,16 @@
 
 <script>
 export default {
-  data() {
+  asyncData() {
     return {
       title: 'About page',
       content: 'About sample pre-rendered Vue webpage',
       image: 'https://blue.kumparan.com/image/upload/senpz1uqdsvamsf2n1wb.png'
+    }
+  },
+  data() {
+    return {
+      title: 'About page'
     }
   },
   head() {
