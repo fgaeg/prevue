@@ -91,7 +91,6 @@ export default {
       // },
       {
         src: 'https://www.google-analytics.com/analytics.js',
-        async: true,
         defer: true
       }
     ],
