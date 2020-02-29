@@ -123,9 +123,19 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/robots-module
     '@nuxtjs/robots',
+    // Doc: https://github.com/nuxt-community/sitemap-module
+    '@nuxtjs/sitemap',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  sitemap: {
+    // custom configuration
+    hostname: process.env.BASE_URL,
+    gzip: true,
+    exclude: [
+      '/sample'
+    ],
+  },
   robots: {
     /* module options */
     UserAgent: '*',
