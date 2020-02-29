@@ -121,9 +121,16 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/robots-module
+    '@nuxtjs/robots',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv'
   ],
+  robots: {
+    /* module options */
+    UserAgent: '*',
+    Disallow: '/'
+  },
   tailwindcss: {
     // configPath: '~/config/tailwind.config.js',
     // cssPath: '~/assets/css/tailwind.css',
