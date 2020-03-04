@@ -2,6 +2,29 @@
 
 > Vue with Nuxt.js
 
+## Features
+
+Some features has been added. Scaffolding your next project would be easy.
+
+- Nuxt
+- Axios
+- PWA
+- Babel
+- Eslint
+- Stylelint
+- Prettier
+
+Additional features
+
+- Tailwind CSS
+- Purgecss integrated with Tailwind CSS
+- CSS extraction (no inline styles)
+- Robots.txt
+- Sitemap
+- Google Analytics
+- Favicon
+- Nested CSS supported by postcss-nested
+
 ## How to run
 
 Install all dependencies at first
