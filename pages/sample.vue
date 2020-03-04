@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h1 class="text-bold">
+      <h1 class="font-bold">
         {{ title }}
       </h1>
       <p>

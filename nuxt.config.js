@@ -223,9 +223,25 @@ export default {
     // },
     // changes fancy chunk names to name and hash
     filenames: {
-      css: ({ isDev }) => isDev ? '[name].css' : '[name].[contenthash].css',
-      img: ({ isDev }) => isDev ? '[path][name].[ext]' : 'img/[name].[contenthash:7].[ext]',
-      chunk: ({ isDev }) => isDev ? '[name].js' : '[name].[contenthash].js'
+      css: ({ isDev }) => isDev ? 'css/[name].css' : 'css/[name].[contenthash].css',
+      img: ({ isDev }) => isDev ? 'img/[path][name].[ext]' : 'img/[name].[contenthash:7].[ext]',
+      chunk: ({ isDev }) => isDev ? 'js/[name].js' : 'js/[name].[contenthash].js'
+    },
+    postcss: {
+      // Add plugin names as key and arguments as value
+      // Install them before as dependencies with npm or yarn
+      plugins: {
+        // Disable a plugin by passing false as value
+        'postcss-nested': {
+          preserveEmpty: true
+        }
+      },
+      preset: {
+        // Change the postcss-preset-env settings
+        autoprefixer: {
+          grid: true
+        }
+      }
     },
     extend(config, ctx) {
       /* Run ESLint on save */

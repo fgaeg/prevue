@@ -1,26 +1,11 @@
 /* purgecss start ignore */
-@tailwind base;
+@import "tailwindcss/base";
 /* purgecss end ignore */
 
-h1 {
-  @apply text-6xl;
-}
+@import "./custom/base.css";
 
-h2 {
-  @apply text-5xl;
-}
+@import "tailwindcss/components";
+@import "./custom/components.css";
 
-h3 {
-  @apply text-4xl;
-}
-
-a {
-  @apply text-blue-600 underline;
-}
-
-.container {
-  @apply mx-auto;
-}
-
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/utilities";
+@import "./custom/utilities.css";

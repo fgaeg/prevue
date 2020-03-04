@@ -1,0 +1,35 @@
+/*
+ * custom base styles here
+ */
+
+h1 {
+  @apply text-6xl;
+}
+
+h2 {
+  @apply text-5xl;
+}
+
+h3 {
+  @apply text-4xl;
+}
+
+a {
+  @apply text-blue-600 underline;
+
+  &:visited {
+    @apply text-green-700;
+  }
+
+  &.diff-color {
+    @apply text-red-600;
+  }
+}
+
+a.diff-size {
+  @apply text-4xl;
+}
+
+.container {
+  @apply mx-auto;
+}

@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <nuxt-link to="/">Home</nuxt-link>
-    <nuxt-link to="/about">About</nuxt-link>
+    <nuxt-link to="/about" class="diff-color">About</nuxt-link>
     <nuxt-link to="/sample">Sample</nuxt-link>
     <nuxt />
   </div>
